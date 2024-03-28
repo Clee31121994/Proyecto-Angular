@@ -1,0 +1,41 @@
+<h1>{{ title }}</h1>
+
+<form #projectForm="ngForm" (ngSubmit)="onSubmit()" class="edit">
+  <!-- Agrega los campos del formulario para editar el proyecto -->
+  <p>
+  <label for="name">Nombre</label>
+  <input type="text" name="name" [(ngModel)]="project.name" required />
+  </p>
+
+  <p>
+  <label for="description">Descripción</label>
+  <textarea name="description" [(ngModel)]="project.description" required></textarea>
+  </p>
+
+  <p>
+  <label for="year">Año de lanzamiento</label>
+  <input type="number" name="year" [(ngModel)]="project.year" required />
+  </p>
+
+  <p>
+  <label for="langs">Lenguajes Utilizados</label>
+  <input type="text" name="langs" [(ngModel)]="project.langs" required />
+  </p>
+
+  <p>
+  <label for="description">Descripción</label>
+  <input type="text" name="category" [(ngModel)]="project.category" required /><br/>
+  </p>  
+  <br/>
+  <input type="file" (change)="fileChangeEvent($event)" />
+
+  <button type="submit" [disabled]="!projectForm.valid">Guardar cambios</button>
+</form>
+
+<div *ngIf="status === 'success'">
+  El proyecto se actualizó correctamente.
+</div>
+
+<div *ngIf="status === 'failed'">
+  Ocurrió un error al actualizar el proyecto.
+</div>
